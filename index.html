@@ -1321,39 +1321,39 @@
             <!-- EmailJS SDK -->
             <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    emailjs.init("Zt5ln-nfJ8MQOAS97"); // Your EmailJS Public Key
+            <script>
+              document.addEventListener("DOMContentLoaded", function () {
+                emailjs.init("Zt5ln-nfJ8MQOAS97"); // Your EmailJS Public Key
 
-    const form = document.getElementById("contact-form");
-    const loading = form.querySelector(".loading");
-    const error = form.querySelector(".error-message");
-    const sent = form.querySelector(".sent-message");
+                const form = document.getElementById("contact-form");
+                const loading = form.querySelector(".loading");
+                const error = form.querySelector(".error-message");
+                const sent = form.querySelector(".sent-message");
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault(); // prevent default form submission
+                form.addEventListener("submit", function (e) {
+                  e.preventDefault(); // prevent default form submission
 
-      sendContactMail(); // call custom function
-    });
+                  sendContactMail(); // call custom function
+                });
 
-    function sendContactMail() {
-      loading.style.display = 'block';
-      error.style.display = 'none';
-      sent.style.display = 'none';
+                function sendContactMail() {
+                  loading.style.display = 'block';
+                  error.style.display = 'none';
+                  sent.style.display = 'none';
 
-      emailjs.sendForm("service_p3o21od", "template_m4jikfj", form)
-        .then(() => {
-          loading.style.display = 'none';
-          sent.style.display = 'block';
-          form.reset();
-        }, (err) => {
-          loading.style.display = 'none';
-          error.innerHTML = '❌ Failed to send message: ' + JSON.stringify(err);
-          error.style.display = 'block';
-        });
-    }
-  });
-</script>
+                  emailjs.sendForm("service_p3o21od", "template_m4jikfj", form)
+                    .then(() => {
+                      loading.style.display = 'none';
+                      sent.style.display = 'block';
+                      form.reset();
+                    }, (err) => {
+                      loading.style.display = 'none';
+                      error.innerHTML = '❌ Failed to send message: ' + JSON.stringify(err);
+                      error.style.display = 'block';
+                    });
+                }
+              });
+            </script>
 
           </div>
 
@@ -1374,12 +1374,8 @@
         </p>
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a
-          href="https://themewagon.com">ThemeWagon</a>
+        Designed by <a href="https://www.linkedin.com/in/md-nazirul-ahsan-271021168">Md. Nazirul Ahsan Rokon</a> Distributed by <a
+          href="https://www.linkedin.com/in/md-nazirul-ahsan-271021168">Rokon</a>
       </div>
     </div>
 
