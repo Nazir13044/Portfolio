@@ -1288,83 +1288,75 @@
           </div>
 
           <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-              data-aos-delay="200">
-              <form id="contact-form">
-<form id="contact-form">
-      <div class="row gy-4">
-        <div class="col-md-6">
-          <label for="name">Your Name</label>
-          <input type="text" id="name" name="user_name" class="form-control" required>
-        </div>
-        <div class="col-md-6">
-          <label for="email">Your Email</label>
-          <input type="email" id="email" name="user_email" class="form-control" required>
-        </div>
-        <div class="col-md-12">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject" class="form-control" required>
-        </div>
-        <div class="col-md-12">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="6" class="form-control" required></textarea>
-        </div>
-          <div class="col-md-12">
-    <div class="loading" style="display:none;">Sending...</div>
-    <div class="error-message" style="display:none;"></div>
-    <div class="sent-message" style="display:none;">Your message has been sent successfully.</div>
-  </div>
-        <div class="col-md-12 text-center">
-          <button type="submit" class="btn btn-primary mt-3">Send Message</button>
-        </div>
-      </div>
-    </form>
+            <form id="contact-form">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <label for="name">Your Name</label>
+                  <input type="text" id="name" name="user_name" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="email">Your Email</label>
+                  <input type="email" id="email" name="user_email" class="form-control" required>
+                </div>
+                <div class="col-md-12">
+                  <label for="subject">Subject</label>
+                  <input type="text" id="subject" name="subject" class="form-control" required>
+                </div>
+                <div class="col-md-12">
+                  <label for="message">Message</label>
+                  <textarea id="message" name="message" rows="6" class="form-control" required></textarea>
+                </div>
+                <div class="col-md-12">
+                  <div class="loading" style="display:none;">Sending...</div>
+                  <div class="error-message" style="display:none; color: red;"></div>
+                  <div class="sent-message" style="display:none; color: green;">Your message has been sent successfully.
+                  </div>
+                </div>
+                <div class="col-md-12 text-center">
+                  <button type="submit" class="btn btn-primary mt-3">Send Message</button>
+                </div>
+              </div>
+            </form>
 
-  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+            <!-- EmailJS SDK -->
+            <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      emailjs.init("Zt5ln-nfJ8MQOAS97"); // Your Public Key
+  document.addEventListener("DOMContentLoaded", function () {
+    emailjs.init("Zt5ln-nfJ8MQOAS97"); // Your EmailJS Public Key
 
-      const form = document.getElementById("contact-form");
-      const result = document.getElementById("result");
+    const form = document.getElementById("contact-form");
+    const loading = form.querySelector(".loading");
+    const error = form.querySelector(".error-message");
+    const sent = form.querySelector(".sent-message");
 
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // prevent default form submission
 
-        emailjs.sendForm("service_p3o21od", "template_m4jikfj", this)
-          .then(function () {
-            result.innerHTML = `<div class="alert alert-success">✅ Message sent successfully!</div>`;
-            form.reset();
-          }, function (error) {
-            result.innerHTML = `<div class="alert alert-danger">❌ Failed to send message: ${JSON.stringify(error)}</div>`;
-          });
-      });
+      sendContactMail(); // call custom function
     });
 
-const loading = thisForm.querySelector('.loading');
-const error = thisForm.querySelector('.error-message');
-const sent = thisForm.querySelector('.sent-message');
+    function sendContactMail() {
+      loading.style.display = 'block';
+      error.style.display = 'none';
+      sent.style.display = 'none';
 
-loading.style.display = 'block';
-error.style.display = 'none';
-sent.style.display = 'none';
-
-emailjs.sendForm("service_p3o21od", "template_m4jikfj", thisForm)
-  .then(() => {
-    loading.style.display = 'none';
-    sent.style.display = 'block';
-    thisForm.reset();
-  }, (err) => {
-    loading.style.display = 'none';
-    error.innerHTML = 'Failed to send message: ' + JSON.stringify(err);
-    error.style.display = 'block';
+      emailjs.sendForm("service_p3o21od", "template_m4jikfj", form)
+        .then(() => {
+          loading.style.display = 'none';
+          sent.style.display = 'block';
+          form.reset();
+        }, (err) => {
+          loading.style.display = 'none';
+          error.innerHTML = '❌ Failed to send message: ' + JSON.stringify(err);
+          error.style.display = 'block';
+        });
+    }
   });
+</script>
 
+          </div>
 
-  </script>
-            </form>
-          </div><!-- End Contact Form -->
 
         </div>
 
